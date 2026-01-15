@@ -1,0 +1,168 @@
+body {
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    height: 100vh;
+    background: #000;
+    font-family: 'Fredoka One', cursive;
+    overflow: hidden;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+#game-wrapper {
+    width: 100vw;
+    height: 100vh;
+}
+
+#game-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background-color: #70c5ce;
+}
+
+canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+#ui-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+#score {
+    position: absolute;
+    top: 10%;
+    width: 100%;
+    text-align: center;
+    font-size: 5rem;
+    color: white;
+    text-shadow: 
+        4px 4px 0 #000,
+        -1px -1px 0 #000,  
+        1px -1px 0 #000,
+        -1px 1px 0 #000,
+        1px 1px 0 #000;
+    z-index: 20;
+}
+
+.screen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.4);
+    pointer-events: auto;
+    backdrop-filter: blur(2px);
+}
+
+.screen.active {
+    display: flex;
+    animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.logo {
+    font-size: 6rem;
+    line-height: 1;
+    color: #f48024;
+    text-shadow: 
+        4px 4px 0 #fff,
+        8px 8px 0 #000;
+    margin-bottom: 40px;
+    text-align: center;
+    animation: float 2s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+}
+
+.instruction-box {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 20px 40px;
+    border-radius: 50px;
+    border: 4px solid #000;
+    box-shadow: 8px 8px 0 rgba(0,0,0,0.2);
+}
+
+.instruction-box p {
+    margin: 0;
+    font-size: 2rem;
+    color: #333;
+}
+
+.score-card {
+    background: #ded895;
+    border: 4px solid #e9aa2e;
+    outline: 4px solid #000;
+    border-radius: 20px;
+    padding: 30px;
+    width: 300px;
+    text-align: center;
+    margin-bottom: 30px;
+    box-shadow: 10px 10px 20px rgba(0,0,0,0.3);
+}
+
+.score-card p {
+    color: #e58d27;
+    margin: 5px 0;
+    font-size: 1.5rem;
+}
+
+.score-card span {
+    display: block;
+    font-size: 3.5rem;
+    color: #fff;
+    text-shadow: 3px 3px 0 #000;
+    margin-bottom: 15px;
+}
+
+h1 {
+    font-size: 5rem;
+    color: #e58d27;
+    text-shadow: 4px 4px 0 #000, -2px -2px 0 #fff;
+    margin-bottom: 30px;
+}
+
+button {
+    background: #53c3e8;
+    border: 4px solid #fff;
+    outline: 2px solid #000;
+    color: white;
+    font-family: 'Fredoka One', cursive;
+    font-size: 2rem;
+    padding: 20px 50px;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 8px 0 #2c8ba8, 0 15px 20px rgba(0,0,0,0.3);
+    transition: all 0.1s;
+}
+
+button:active {
+    box-shadow: 0 0 0 #2c8ba8, 0 0 0 rgba(0,0,0,0.3);
+    transform: translateY(8px);
+}
+
+@media (max-width: 600px) {
+    .logo { font-size: 4rem; }
+    h1 { font-size: 3.5rem; }
+    .score-card { width: 80%; }
+}
