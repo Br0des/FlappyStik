@@ -378,7 +378,7 @@ function init() {
 }
 
 function startGame() {
-    const queryString = anchor.search; // Returns:'?q=123'
+    const queryString = window.location.search; // Returns:'?q=123'
 
     // Further parsing:
     const params = new URLSearchParams(queryString);
