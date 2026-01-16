@@ -14,7 +14,7 @@ const DIFFICULTIES = {
     'EASY': { gravity: 0.38, jump: 6.8, speed: 3.0, gap: 170, spawn: 140, variation: 150 },
     'NORMAL': { gravity: 0.42, jump: 7.2, speed: 3.5, gap: 140, spawn: 115, variation: 230 },
     'HARD': { gravity: 0.48, jump: 7.5, speed: 4.5, gap: 110, spawn: 90, variation: 300 },
-    'VERYHARD': { gravity: 0.48, jump: 7.5, speed: 9, gap: 80, spawn: 90, variation: 300 }
+    'EXTREME': { gravity: 0.60, jump: 8.5, speed: 6.5, gap: 95, spawn: 60, variation: 400 }
 };
 
 let currentDifficulty = 'NORMAL';
@@ -22,8 +22,13 @@ let gameLoopId;
 let menuLoopId;
 
 function setDifficulty(level) {
+    let config = DIFFICULTIES[level];
+    if (!config) {
+        level = 'NORMAL';
+        config = DIFFICULTIES['NORMAL'];
+    }
+    
     currentDifficulty = level;
-    const config = DIFFICULTIES[level];
     GRAVITY = config.gravity;
     JUMP = config.jump;
     SPEED = config.speed;
