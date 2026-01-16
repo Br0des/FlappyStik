@@ -18,7 +18,7 @@ const DIFFICULTIES = {
     'HARD': { gravity: 0.48, jump: 7.5, speed: 4.5, gap: 110, spawn: 90, variation: 300 },
     'EXTREME': { gravity: 0.60, jump: 8.5, speed: 6.5, gap: 95, spawn: 60, variation: 400 },
     'IMPOSSIBLE': { gravity: 0.72, jump: 9.2, speed: 8.6, gap: 75, spawn: 75, variation: 425 },
-    'NO': { gravity: 0.40, jump: 5.0, speed: 9.0, gap: 45, spawn: 140, variation: 500 }
+    'NO': { gravity: 0.40, jump: 5.0, speed: 9.0, gap: 35, spawn: 140, variation: 500 }
 };
 
 let currentDifficulty = 'NORMAL';
