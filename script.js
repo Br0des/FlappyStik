@@ -382,8 +382,8 @@ function startGame() {
 
     // Further parsing:
     const params = new URLSearchParams(queryString);
-    const elevator = params.get("EM")
-    if (elevator == "true") {
+    const custom = params.get("CM")
+    if (custom == "true") {
         audioController.playMP3("https://incompetech.com/music/royalty-free/mp3-royaltyfree/Local%20Forecast%20-%20Elevator.mp3", true);
     } else {
         audioController.startMusic();
