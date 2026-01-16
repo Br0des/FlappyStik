@@ -378,7 +378,16 @@ function init() {
 }
 
 function startGame() {
-    audioController.playMP3("https://incompetech.com/music/royalty-free/mp3-royaltyfree/Local%20Forecast%20-%20Elevator.mp3", true);
+    const queryString = anchor.search; // Returns:'?q=123'
+
+    // Further parsing:
+    const params = new URLSearchParams(queryString);
+    const elevator = params.get("EM")
+    if (elevator == "true") {
+        audioController.playMP3("https://incompetech.com/music/royalty-free/mp3-royaltyfree/Local%20Forecast%20-%20Elevator.mp3", true);
+    } else {
+        audioController.startMusic();
+    }
     gameState = 'PLAYING';
     document.getElementById('start-screen').classList.remove('active');
     document.getElementById('game-over-screen').classList.remove('active');
