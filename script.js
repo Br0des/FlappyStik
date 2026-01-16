@@ -400,6 +400,7 @@ function gameOver() {
         highScore = score;
         localStorage.setItem(getHighScoreKey(), highScore);
     }
+    document.dispatchEvent(new Event("statecheck"));
     document.getElementById('final-score').innerText = score;
     document.getElementById('best-score').innerText = highScore;
     document.getElementById('game-over-screen').classList.add('active');
@@ -577,6 +578,7 @@ class AudioController {
 
     toggleMute() {
         this.isMuted = !this.isMuted;
+        document.dispatchEvent(new Event("statecheck"));
         this.muteBtn.innerHTML = this.isMuted ? this.icons.off : this.icons.on;
         if (this.ctx) {
             if (this.isMuted) {
@@ -600,15 +602,25 @@ class AudioController {
         osc.start(time);
         osc.stop(time + duration);
     }
-    playMP3(mp3sourcepath, loop) {
-        var mp3Audio = new Audio()
-        mp3Audio.src = mp3sourcepath
-        mp3Audio.volume = 1
-        if (loop == true) {
-            mp3Audio.loop = true
-        }
-        mp3Audio.play()
+    playMP3(mp3sourcepath, loop = false) {
+        if (this.isMuted || this.gameOver) return;
+
+        const mp3Audio = new Audio(mp3sourcepath);
+        mp3Audio.volume = 1;
+        mp3Audio.loop = loop;
+        mp3Audio.play();
+
+        const stopIfNeeded = () => {
+            if (this.isMuted || this.gameState === 'GAMEOVER') {
+                mp3Audio.pause();
+                mp3Audio.currentTime = 0;
+                document.removeEventListener("statecheck", stopIfNeeded);
+            }
+        };
+
+        document.addEventListener("statecheck", stopIfNeeded);
     }
+
     scheduler() {
         if (!this.isPlaying) return;
         const secondsPerBeat = 60.0 / this.tempo;
